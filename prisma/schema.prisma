@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+model User {
+  id                      Int       @id @default(autoincrement())
+  name                    String    @map("username")
+  email                   String?
+  address                 String
+  role                    Role      @default(CUSTOMER)
+  whatsApp                String    @unique
+  passwordHash            String
+  phoneNo                 String?
+  passwordResetToken      String?
+  passwordResetExpiry     DateTime?
+  verificationToken       String?
+  verificationTokenExpiry DateTime?
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  isVerified              Boolean   @default(false)
+  items                   Item[]                 
+}
+
+enum Role {
+  ADMIN
+  CUSTOMER
+  SELLER
+}
+
+//Category
+model Category {
+  id          Int    @id @default(autoincrement())
+  name        String @map("category_name")
+  description String
+  items       Item[]
+}
+
+model Item {
+  id          Int         @id @default(autoincrement())
+  name        String      @map("item_name")
+  description String
+  price       Int
+  imageUrl    String
+  isActive    Boolean   @default(true)
+  categoryId  Int
+  discount    String
+  quantity    Int
+  category    Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade) // Item.categoryId ->Category.id
+  userId      Int
+  user        User @relation(fields:[userId], references: [id],onDelete:Cascade)
+}
