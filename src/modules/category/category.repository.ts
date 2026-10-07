@@ -20,7 +20,6 @@ export class CategoryRepository {
   }
 
   createCategory(data: CategoryCreateInput) {
-    console.log(data);
     return this.prismaService.category.create({
       data,
     });

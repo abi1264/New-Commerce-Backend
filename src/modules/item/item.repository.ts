@@ -29,6 +29,9 @@ export class ItemRepository {
       where: {
         categoryId: categoryIdd,
       },
+        include:{
+          user:true,
+        },
     });
   }
 

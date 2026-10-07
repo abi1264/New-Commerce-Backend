@@ -12,7 +12,7 @@ import { AuthRepository } from './auth.repository.js';
     JwtModule.register({
       global: true,
       secret: process.env.JWT_SECRET || 'SECRET123',
-      signOptions: { expiresIn: '1h' },
+      signOptions: { expiresIn: '1d' },
     }),
     UserModule,
   ],

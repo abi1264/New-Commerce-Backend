@@ -11,11 +11,12 @@ import {
 import { CategoryService } from './category.service.js';
 import { CreateCategoryDto } from './dto/createCategoryDto.js';
 import { UpdateCategoryDto } from './dto/updateCategoryDto.js';
-import { AdminRoleGuard } from '../auth/guards/role.guard.js';
+import { AdminOrSellerRoleGuard, AdminRoleGuard } from '../auth/guards/role.guard.js';
 
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
+
 
   @Get()
   async findAll() {

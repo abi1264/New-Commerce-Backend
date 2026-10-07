@@ -1,9 +1,15 @@
-import { IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class UpdateCategoryDto {
+  @IsOptional()
   @IsString()
   name?: string;
 
+  @IsOptional()
   @IsString()
   description?: string;
+
+   @IsOptional()
+   @IsString()
+   imageUrl?:string;
 }

@@ -16,7 +16,7 @@ model User {
   role                    Role      @default(CUSTOMER)
   whatsApp                String    @unique
   passwordHash            String
-  phoneNo                 String?
+  phoneNo                 String? 
   passwordResetToken      String?
   passwordResetExpiry     DateTime?
   verificationToken       String?
@@ -38,6 +38,7 @@ model Category {
   id          Int    @id @default(autoincrement())
   name        String @map("category_name")
   description String
+  imageUrl    String?
   items       Item[]
 }
 

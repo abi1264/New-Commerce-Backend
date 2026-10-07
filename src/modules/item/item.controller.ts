@@ -33,6 +33,7 @@ export class ItemsController {
     return await this.itemService.getItemById(Number(id));
   }
 
+ 
   @Get('category/:categoryId')
   async findByCategory(@Param('categoryId') categoryId: string) {
     return await this.itemService.getByCategory(Number(categoryId));
@@ -50,13 +51,13 @@ export class ItemsController {
     return await this.itemService.createItem(loggedUserId, body);
   }
 
-  @UseGuards(SellerRoleGuard, AdminRoleGuard)
+  @UseGuards(AdminOrSellerRoleGuard)
   @Patch(':id')
   async updateItem(@Param('id') id: string, @Body() body: UpdateItemDto) {
     return await this.itemService.updateItem(Number(id), body);
   }
 
-  @UseGuards(SellerRoleGuard, AdminRoleGuard)
+  @UseGuards(AdminOrSellerRoleGuard)
   @Delete(':id')
   async deleteItem(@Param('id') id: string) {
     return await this.itemService.deleteItem(Number(id));

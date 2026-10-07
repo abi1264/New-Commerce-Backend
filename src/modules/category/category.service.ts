@@ -24,6 +24,7 @@ export class CategoryService {
     const data: CategoryCreateInput = {
       name: body.name,
       description: body.description,
+      imageUrl:body.imageUrl,
     };
     return this.categoryService.createCategory(data);
   }
@@ -31,6 +32,7 @@ export class CategoryService {
     const data: CategoryUpdateInput = {
       name: body.name,
       description: body.description,
+      imageUrl:body.imageUrl,
     };
     return this.categoryService.updateCategory(id, data);
   }

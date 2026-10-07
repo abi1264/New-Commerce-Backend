@@ -5,4 +5,6 @@ export class CreateCategoryDto {
   name!: string;
   @IsString()
   description!: string;
+  @IsString()
+  imageUrl!:string;
 }
